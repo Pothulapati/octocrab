@@ -8,8 +8,10 @@ pub struct WorkFlow {
     pub name: String,
     pub path: String,
     pub state: String,
-    pub created_at: chrono::DateTime<chrono::Utc>,
-    pub updated_at: chrono::DateTime<chrono::Utc>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<chrono::DateTime<chrono::Utc>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<chrono::DateTime<chrono::Utc>>,
     pub url: Url,
     pub html_url: Url,
     pub badge_url: Url,
@@ -29,8 +31,10 @@ pub struct Run {
     pub status: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub conclusion: Option<String>,
-    pub created_at: chrono::DateTime<chrono::Utc>,
-    pub updated_at: chrono::DateTime<chrono::Utc>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub created_at: Option<chrono::DateTime<chrono::Utc>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub updated_at: Option<chrono::DateTime<chrono::Utc>>,
     pub url: Url,
     pub html_url: Url,
     pub jobs_url: Url,
@@ -55,7 +59,8 @@ pub struct HeadCommit {
     pub id: String,
     pub tree_id: String,
     pub message: String,
-    pub timestamp: chrono::DateTime<chrono::Utc>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub timestamp: Option<chrono::DateTime<chrono::Utc>>,
     pub author: super::repos::GitUser,
     pub committer: super::repos::GitUser,
 }
@@ -90,7 +95,8 @@ pub struct Step {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub conclusion: Option<String>,
     pub number: i64,
-    pub started_at: chrono::DateTime<chrono::Utc>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub started_at: Option<chrono::DateTime<chrono::Utc>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub completed_at: Option<chrono::DateTime<chrono::Utc>>,
 }
